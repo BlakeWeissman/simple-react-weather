@@ -28,7 +28,7 @@ export class Index extends Component {
               <h2>A Simple React Weather App</h2><p>Created by Blake Weissman</p>
             </div>
             <div className="right vCenter">
-              <p>Search by Town/City Name</p>
+              <p>Search by Location</p>
               <input id="search" onChange={this.search}></input>
             </div>  
           </div>
