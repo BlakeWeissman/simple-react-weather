@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class Result extends Component {
   render() {
-    return (
-      <div id="result" className="wrap">
-        <h1>Location Not Found.</h1>
-      </div>
-    );
+    if (this.props.weather === null) {
+      return (
+        <div id="result" className="wrap">
+          <h1>Location Not Found.</h1>
+        </div>
+      );
+    }    
+    else {
+      return (
+        <div id="result" className="wrap">
+          <h1>{this.props.name}</h1>
+          <h2>Description: {this.props.weather}</h2>
+        </div>
+      );
+    }
   }
 }
 
-export default App;
+export default Result;
