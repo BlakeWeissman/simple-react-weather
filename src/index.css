@@ -21,9 +21,15 @@ code {
   transition: 0.2s;
 }
 
-#result {
-  padding-top: 75px;
+#nullResult {
   min-height: 100vh;
+  transition: 0s;
+}
+
+#result {
+  padding-top: 95px;
+  min-height: 100vh;
+  transition: 0s;
 }
 
 .wrap {

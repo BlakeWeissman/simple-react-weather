@@ -4,8 +4,8 @@ class Result extends Component {
   render() {
     if (this.props.weather === null) {
       return (
-        <div id="result" className="wrap">
-          <h1>Location Not Found.</h1>
+        <div id="nullResult" className="wrap flex">
+          <h1 className="vCenter hCenter">Location Not Found.</h1>
         </div>
       );
     }    
