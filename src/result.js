@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Result extends Component {
   render() {
+    //If nonvaild weather data is provided
     if (this.props.weather === null) {
       return (
         <div id="nullResult" className="wrap flex">
@@ -9,6 +10,7 @@ class Result extends Component {
         </div>
       );
     }    
+    //If vaild weather data is provided
     else {
       return (
         <div id="result" className="wrap">

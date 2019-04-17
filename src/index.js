@@ -7,38 +7,38 @@ export class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: null,
       weather: null,
-      name: null
+      temp: null,
+      
     }
     this.search = this.search.bind(this);
     setNull = setNull.bind(this);
   }
 
+  //Function that gets weather information given a location
   async search() {
+    //Get the search query from the search input
     const value = document.getElementById("search").value;
     if (!value) {
       setNull();
     }
     else {
-      if (value !== undefined) {  
-        let getWeather = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + value + "&appid=bb60f742f138db4e828399812fffdfba")
-          .then(function(response) {
-            return response.json();
-          }
-        );
-        console.log("get: "+  Object.keys(getWeather));
-        if (getWeather.cod != "404") {
-          console.log("test2: " + getWeather.name);
-          this.setState({ 
-            weather: getWeather.weather["0"].description,
-            name: getWeather.name
-          });
+      //Get the weather data
+      let getWeather = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + value + "&appid=bb60f742f138db4e828399812fffdfba")
+        .then(function(response) {
+          return response.json();
         }
-        else {
-          setNull();
-        }
-      } 
-      else {  
+      );
+      //If the weather data is valid
+      if (getWeather.cod != "404") {
+        this.setState({ 
+          name: getWeather.name,
+          weather: getWeather.weather["0"].description
+        });
+      }
+      //If the weather data is not valid
+      else {
         setNull();
       }
     }
@@ -58,7 +58,7 @@ export class Index extends Component {
             </div>  
           </div>
         </div>
-        <Result name={this.state.name} weather={this.state.weather} />
+        <Result name={this.state.name} weather={this.state.weather} temp={this.state.temp} />
       </div>
     );
   }
