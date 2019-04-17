@@ -8,8 +8,8 @@ export class Index extends Component {
     super(props);
     this.state = {
       name: null,
-      weather: null,
       temp: null,
+      desc: null
       
     }
     this.search = this.search.bind(this);
@@ -24,7 +24,7 @@ export class Index extends Component {
       setNull();
     }
     else {
-      //Get the weather data
+      //Get the weather data"
       let getWeather = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + value + "&appid=bb60f742f138db4e828399812fffdfba")
         .then(function(response) {
           return response.json();
@@ -34,8 +34,10 @@ export class Index extends Component {
       if (getWeather.cod != "404") {
         this.setState({ 
           name: getWeather.name,
-          weather: getWeather.weather["0"].description
+          temp: getWeather.main.temp,
+          desc: getWeather.weather["0"].description
         });
+        console.log(getWeather);
       }
       //If the weather data is not valid
       else {
@@ -58,7 +60,7 @@ export class Index extends Component {
             </div>  
           </div>
         </div>
-        <Result name={this.state.name} weather={this.state.weather} temp={this.state.temp} />
+        <Result name={this.state.name} temp={this.state.temp} desc={this.state.desc}  />
       </div>
     );
   }
@@ -66,8 +68,9 @@ export class Index extends Component {
 
 function setNull() {
   this.setState({ 
-    weather: null,
-    name: null 
+    name: null,
+    temp: null,
+    desc: null
   });
 }
 
